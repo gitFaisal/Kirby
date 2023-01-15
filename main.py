@@ -7,29 +7,20 @@ from shapes import *
 
 initialize_game_setup()
 
-
-# Create Kirby and Enemies
 position = (0, 0)
 kirby = Kirby( position )
 kirby.set_lives()
-# Register Kirby actions
 register_action_keys(kirby)
-
-
 
 apple = Enemy((195, 23), apple_right, apple_left, 'Left')
 raddish = Enemy((-120, -260), raddish_right, raddish_left, 'Right')
-# Put all enemies in an array. Allowing us to loop over them
 enemy_array = [apple, raddish]
 
-
-# Platform
 platform1 = Platform((0,-150))
 platform2 = Platform((-195, -10))
 platform3 = Platform((195, -10))
 platform_array = [platform1, platform2, platform3]
 
-# Used to measure time by measuring how many frames have passed
 frame = 0
 
 while True:
@@ -44,15 +35,7 @@ while True:
   kirby_jump(kirby, frame)
   reset_kirby_collision(kirby)
 
-  # Function that checks kirbys Y while falling
-  # If kirby lands above a platform, he should stop
-  # checkPlatform(kirby)
-
-  # for platform in platform_array:
-  #   platform_contact(kirby, platform) 
-  #   off_platform(kirby) # When kirby walks off a platform he falls
-  
-  # Using this loop to check if any of the enemy are hitting kirby
+  # Move logic into function
   for enemy in enemy_array:
     kirby_collision(kirby, enemy)
     enemy.move_fireball()
